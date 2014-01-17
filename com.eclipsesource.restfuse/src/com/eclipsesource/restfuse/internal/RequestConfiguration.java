@@ -119,14 +119,16 @@ public class RequestConfiguration {
   }
 
   private InputStream getFileStream( String file ) {
-    URL resource = target.getClass().getResource( file );
     try {
-      return resource.openStream();
+    	InputStream resource = new FileInputStream(file);
+    	return resource;
     } catch( Exception ioe ) {
-      throw new IllegalStateException( "Could not open file "
-                                       + file
-                                       + ". Maybe it's not on the classpath?" );
+//      throw new IllegalStateException( "Could not open file "
+//                                       + file
+//                                       + ". Maybe it's not on the classpath?" );
+    	ioe.printStackTrace();
     }
+    return null;
   }
 
   private InputStream getContentStream( String content ) {
